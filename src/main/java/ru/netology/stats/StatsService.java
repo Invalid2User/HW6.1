@@ -1,7 +1,5 @@
 package ru.netology.stats;
 
-import static java.lang.Long.sum;
-
 public class StatsService {
 
     public int allSalesSum(long[] sales) {
