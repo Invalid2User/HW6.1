@@ -1,7 +1,9 @@
 package ru.netology.stats;
 
+import static java.lang.Long.sum;
+
 public class StatsService {
-    
+
     public int allSalesSum(long[] sales) {
         int sum = 0;
         for (long salesAmount : sales) {
@@ -11,31 +13,28 @@ public class StatsService {
     }
 
     public int medSales(long[] sales) {
-        int sum = 0;
+        long sum = allSalesSum(sales);
         int result;
-        for (long summary : sales) {
-            sum += summary;
-        }
         int x = sales.length;
-        result = sum / x;
+        result = (int) (sum / x);
         return result;
     }
 
     public int minSales(long[] sales) {
         int minMonth = 0;
-        int month = 0; // переменная для индекса рассматриваемого месяца в массиве
+        int month = 0;
         for (long sale : sales) {
             if (sale <= sales[minMonth]) {
                 minMonth = month;
             }
-            month = month + 1; // следующий рассматриваемый месяц имеет номер на 1 больше
+            month = month + 1;
         }
         return minMonth + 1;
     }
 
     public int maxSales(long[] sales) {
-        int maxMonth = 0; //запоминает
-        int month = 0; // хранит номер рассматриваемого месяца из массива
+        int maxMonth = 0;
+        int month = 0;
         for (long sale : sales) {
             if (sale >= sales[maxMonth]) {
                 maxMonth = month;
@@ -47,15 +46,10 @@ public class StatsService {
 
 
     public int minMedSales(long[] sales) {
-        long summary = 0;
-        for (long sale : sales) {
-            summary = summary + sale;
-        }
-        int x = sales.length;
-        long medSales = summary / x;
+        int average = medSales(sales);
         int number = 0;
         for (long sale : sales) {
-            if (sale < medSales) {
+            if (sale < average) {
                 number++;
             }
         }
@@ -63,15 +57,10 @@ public class StatsService {
     }
 
     public int maxMedSales(long[] sales) {
-        long summary = 0;
-        for (long sale : sales) {
-            summary += sale;
-        }
-        int x = sales.length;
-        long medSales = summary / x;
+        int average = medSales(sales);
         int number = 0;
         for (long sale : sales) {
-            if (sale > medSales) {
+            if (sale > average) {
                 number++;
             }
         }
